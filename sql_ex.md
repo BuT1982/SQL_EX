@@ -1,4 +1,11 @@
 Схема БД состоит из четырех таблиц:
+Product
+| Column name | Data Type  | Nulls |
+| ----------- |:----------:| -----:|
+| maker       | varchar(10)|       |
+| model       | varchar(10)|       |
+| type        | varchar(10)|       |
+
 Product(maker, model, type)
 PC(code, model, speed, ram, hd, cd, price)
 Laptop(code, model, speed, ram, hd, price, screen)
@@ -46,4 +53,11 @@ FROM
 Product INNER JOIN Laptop
 ON Laptop.model = Product.model
 WHERE hd>=10
+```
+
+**Exercise: 7.** Найдите номера моделей и цены всех имеющихся в продаже продуктов (любого типа) производителя B
+```sql
+SELECT model, price 
+FROM Product JOIN Laptop
+ON Product.model = Laptop.model
 ```
