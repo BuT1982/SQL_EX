@@ -46,7 +46,15 @@ WHERE hd>=10
 
 **Exercise: 7.** Найдите номера моделей и цены всех имеющихся в продаже продуктов (любого типа) производителя B
 ```sql
-SELECT model, price 
-FROM Product JOIN Laptop
-ON Product.model = Laptop.model
+select Product.model, price from Product
+join pc on Product.model = pc.model
+where maker = 'B'
+UNION
+select Product.model, price from Product
+join Laptop on Product.model = Laptop.model
+where maker = 'B'
+UNION
+select Product.model, price from Product
+join Printer on Product.model = Printer.model
+where maker = 'B'
 ```
