@@ -46,15 +46,33 @@ WHERE hd>=10
 
 **Exercise: 7.** Найдите номера моделей и цены всех имеющихся в продаже продуктов (любого типа) производителя B
 ```sql
-select Product.model, price from Product
-join pc on Product.model = pc.model
-where maker = 'B'
+SELECT Product.model, price from Product
+JOIN PC ON Product.model = PC.model
+WHERE maker = 'B'
 UNION
-select Product.model, price from Product
-join Laptop on Product.model = Laptop.model
-where maker = 'B'
+SELECT Product.model, price from Product
+JOIN Laptop ON Product.model = Laptop.model
+WHERE maker = 'B'
 UNION
-select Product.model, price from Product
-join Printer on Product.model = Printer.model
-where maker = 'B'
+SELECT Product.model, price from Product
+JOIN Printer ON Product.model = Printer.model
+WHERE maker = 'B'
+```
+
+**Exercise: 8.** Найдите производителя, выпускающего ПК, но не ПК-блокноты.
+```sql
+SELECT DISTINCT maker
+FROM Product 
+WHERE type = 'PC' AND
+maker NOT IN (SELECT DISTINCT maker
+FROM Product 
+WHERE type = 'Laptop')
+```
+
+**Exercise: 9.** Найдите производителей ПК с процессором не менее 450 Мгц. 
+Вывести: Maker
+```sql
+SELECT DISTINCT maker FROM Product
+JOIN PC ON Product.model = PC.model
+WHERE speed>=450
 ```
