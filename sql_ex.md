@@ -103,6 +103,15 @@ SELECT AVG(speed) FROM PC
 JOIN Product ON PC.model = Product.model
 WHERE maker = 'A'
 ```
+
+**Exercise: 15.** Найдите размеры жестких дисков, совпадающих у двух и более PC. 
+Вывести: HD
+```sql
+SELECT hd FROM PC
+GROUP BY hd
+HAVING count(hd)>=2
+```
+
 ---
 ![БД](https://sql-ex.ru/images/ships.gif)
 Рассматривается БД кораблей, участвовавших во второй мировой войне. Имеются следующие отношения:
