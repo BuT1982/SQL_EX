@@ -103,7 +103,7 @@ SELECT AVG(speed) FROM PC
 JOIN Product ON PC.model = Product.model
 WHERE maker = 'A'
 ```
-
+---
 ![БД](https://sql-ex.ru/images/ships.gif)
 Рассматривается БД кораблей, участвовавших во второй мировой войне. Имеются следующие отношения:
 Classes (class, type, country, numGuns, bore, displacement)
@@ -116,7 +116,8 @@ Outcomes (ship, battle, result)
 
 **Exercise: 14.** Найдите класс, имя и страну для кораблей из таблицы Ships, имеющих не менее 10 орудий.
 ```sql
-SELECT AVG(speed) FROM PC
-JOIN Product ON PC.model = Product.model
-WHERE maker = 'A'
+SELECT ships.class, name, country 
+FROM Ships
+JOIN Classes ON Ships.class= Classes.class
+WHERE numGuns>=10
 ```
