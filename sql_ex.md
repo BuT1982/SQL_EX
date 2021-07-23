@@ -112,6 +112,22 @@ GROUP BY hd
 HAVING count(hd)>=2
 ```
 
+**Exercise: 16.** Найдите модели ПК-блокнотов, скорость которых меньше скорости каждого из ПК.
+Вывести: type, model, speed
+```sql
+SELECT DISTINCT A.model AS model, B.model AS model, A.speed, A.ram
+FROM PC AS A, PC B
+WHERE A.speed = B.speed AND A.ram = B.ram AND
+ A.model > B.model
+```
+
+**Exercise: 17.** Найдите пары моделей PC, имеющих одинаковые скорость и RAM. В результате каждая пара указывается только один раз, т.е. (i,j), но не (j,i), Порядок вывода: модель с большим номером, модель с меньшим номером, скорость и RAM.
+```sql
+SELECT DISTINCT type, Laptop.model, speed FROM Laptop
+JOIN Product ON Laptop.model = Product.model
+WHERE Speed < ALL (SELECT Speed FROM PC)
+```
+
 ---
 ![БД](https://sql-ex.ru/images/ships.gif)
 Рассматривается БД кораблей, участвовавших во второй мировой войне. Имеются следующие отношения:
