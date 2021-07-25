@@ -156,6 +156,31 @@ GROUP BY maker
 HAVING COUNT(model) >= 3
 ```
 
+**Exercise: 21.** Найдите максимальную цену ПК, выпускаемых каждым производителем, у которого есть модели в таблице PC.
+Вывести: maker, максимальная цена.
+```sql
+SELECT maker, MAX(price) AS Max_price FROM PC 
+JOIN Product ON PC.model = Product.model
+GROUP BY maker
+```
+
+**Exercise: 22.** Для каждого значения скорости ПК, превышающего 600 МГц, определите среднюю цену ПК с такой же скоростью.
+Вывести: speed, средняя цена.
+```sql
+SELECT speed, AVG(price) AS Avg_price FROM PC
+WHERE speed > 600
+GROUP BY speed
+```
+
+**Exercise: 23.** ДНайдите производителей, которые производили бы как ПК
+со скоростью не менее 750 МГц, так и ПК-блокноты со скоростью не менее 750 МГц.
+Вывести: Maker
+```sql
+SELECT speed, AVG(price) AS Avg_price FROM PC
+WHERE speed > 600
+GROUP BY speed
+```
+
 ---
 ![БД](https://sql-ex.ru/images/ships.gif)
 Рассматривается БД кораблей, участвовавших во второй мировой войне. Имеются следующие отношения:
