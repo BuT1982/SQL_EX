@@ -128,6 +128,34 @@ JOIN Product ON Laptop.model = Product.model
 WHERE Speed < ALL (SELECT Speed FROM PC)
 ```
 
+**Exercise: 18.** Найдите производителей самых дешевых цветных принтеров.
+Вывести: maker, price
+```sql
+SELECT DISTINCT maker, price FROM Printer INNER 
+JOIN Product ON Printer.model = Product.model
+WHERE price = (SELECT MIN(price) 
+FROM Printer
+WHERE color = 'y') AND
+color = 'y'
+```
+
+**Exercise: 19.** Для каждого производителя, имеющего модели в таблице Laptop, найдите средний размер экрана выпускаемых им ПК-блокнотов.
+Вывести: maker, средний размер экрана.
+```sql
+SELECT maker, AVG(screen) AS Avg_screen FROM Laptop
+Join Product ON Product.model = Laptop.model
+Group by maker
+```
+
+**Exercise: 20.** Найдите производителей, выпускающих по меньшей мере три различных модели ПК.
+Вывести: Maker, число моделей ПК.
+```sql
+SELECT maker, COUNT(model) FROM Product
+WHERE type = 'PC'
+GROUP BY maker
+HAVING COUNT(model) >= 3
+```
+
 ---
 ![БД](https://sql-ex.ru/images/ships.gif)
 Рассматривается БД кораблей, участвовавших во второй мировой войне. Имеются следующие отношения:

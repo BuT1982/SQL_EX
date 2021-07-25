@@ -105,3 +105,13 @@ GROUP BY name
 HAVING count(name)>3
 ORDER BY Сумма DESC
 ```
+
+**Exercise: 1.7/4.**
+Занести в таблицу fine суммы штрафов, которые должен оплатить водитель, в соответствии с данными из таблицы traffic_violation. При этом суммы заносить только в пустые поля столбца  sum_fine.
+
+```sql
+UPDATE fine AS f, traffic_violation AS tv
+    SET f.sum_fine=IF(f.sum_fine is Null,
+                  (SELECT sum_fine FROM traffic_violation tv WHERE f.violation=tv.violation),
+                  f.sum_fine);
+```
